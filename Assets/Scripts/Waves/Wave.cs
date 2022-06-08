@@ -4,12 +4,12 @@ using UnityEngine;
 namespace DaemonsGate.Waves
 {
 
-    [CreateAssetMenu(fileName ="Wave", menuName = "ScriptableObjects/")]
+    [CreateAssetMenu(fileName ="Wave", menuName = "DaemonsGate/Wave")]
     public class Wave : ScriptableObject
     {
         public int waveId = 0;
-
-        public IEnemy[] enemies;
-        public float waveTime = 60f;
+        public Vector3[] spawnPositions;
+        public BaseEnemy[] enemies;
+        public float waveDuration = 60f;
     }
 }

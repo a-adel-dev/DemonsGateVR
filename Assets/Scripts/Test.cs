@@ -6,22 +6,23 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    [SerializeField] float timerValue;
-    [SerializeField] WaveGenerator generator;
+    [SerializeField]
+    float timerValue;
+
+    [SerializeField]
+    WaveGenerator generator;
     Timer timer;
+
     // Start is called before the first frame update
     void Start()
     {
-        timer = new Timer(timerValue);
+        generator.BeginWaves();
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer.PassTime(Time.deltaTime);
-        if (timer.isTimerUp())
-        {
-            Debug.Log($"Timer: {timer.Duration} finished!");
-        }
+
+
     }
 }

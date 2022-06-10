@@ -8,27 +8,20 @@ namespace DaemonsGate.Enemies
     public class RangedEnemy : MonoBehaviour , IEnemy
     {
         [SerializeField]
-        float range;
-        GameObject player;
-        EnemeyBehaviorControl brain;
+        float shootingDistance;
 
         public GameObject GameObject => gameObject;
 
+        public float ShootingDistance { get => shootingDistance; set => shootingDistance = value; }
+
         private void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player");
-            if (player is null) 
-            {
-                return;
-            }
-            brain = GetComponent<EnemeyBehaviorControl>();
-            brain.Player = player;
-            brain.SeekPlayer(range);
+
         }
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.DrawWireSphere(transform.position, range);
+            Gizmos.DrawWireSphere(transform.position, ShootingDistance);
         }
 
     }

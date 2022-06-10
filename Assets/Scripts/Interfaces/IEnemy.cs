@@ -7,5 +7,6 @@ namespace DaemonsGate.Interfaces
     public interface IEnemy
     {
         GameObject GameObject { get; }
+        float ShootingDistance { get; set; }
     }
 }

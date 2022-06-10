@@ -1,3 +1,4 @@
+using DaemonsGate.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,7 @@ namespace DaemonsGate.AI
         NavMeshAgent nav;
         GameObject player;
         float _range;
+        IEnemy enemy;
 
         public GameObject Player
         {
@@ -23,7 +25,14 @@ namespace DaemonsGate.AI
 
         private void Start()
         {
+            player = GameObject.FindGameObjectWithTag("Player");
             nav = GetComponent<NavMeshAgent>();
+            enemy = GetComponent<IEnemy>();
+            if (player is null)
+            {
+                return;
+            }
+            SeekPlayer(enemy.ShootingDistance);
         }
 
         private void Update()

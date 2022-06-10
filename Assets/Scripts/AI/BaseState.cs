@@ -1,3 +1,4 @@
+using DaemonsGate.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,12 +10,11 @@ namespace DaemonsGate.AI
             EnemeyBehaviorControl control,
             NavMeshAgent nav,
             GameObject player,
-            float range
+            float range,
+            IAnimationManager animator
         );
         public abstract void Update(
-            EnemeyBehaviorControl control,
-            NavMeshAgent nav,
-            GameObject player
+            EnemeyBehaviorControl control
         );
     }
 }

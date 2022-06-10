@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DaemonsGate.Interfaces;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace DaemonsGate.AI
@@ -9,7 +10,8 @@ namespace DaemonsGate.AI
             EnemeyBehaviorControl control,
             NavMeshAgent nav,
             GameObject player,
-            float range
+            float range,
+            IAnimationManager animationManager
         )
         {
             throw new System.NotImplementedException();
@@ -18,9 +20,7 @@ namespace DaemonsGate.AI
         }
 
         public override void Update(
-            EnemeyBehaviorControl control,
-            NavMeshAgent nav,
-            GameObject player
+            EnemeyBehaviorControl control
         )
         {
             throw new System.NotImplementedException();

@@ -1,4 +1,5 @@
 using DaemonsGate.Interfaces;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,11 +7,13 @@ namespace DaemonsGate.AI
 {
     public class EnemeyBehaviorControl : MonoBehaviour
     {
+        //exposed for debugging
+        public string currentState;
         BaseState _currentState;
         NavMeshAgent nav;
         GameObject player;
-        float _range;
         IEnemy enemy;
+        IAnimationManager _animator;
 
         public GameObject Player
         {
@@ -22,43 +25,50 @@ namespace DaemonsGate.AI
             get => _currentState;
             set => _currentState = value;
         }
+        public IAnimationManager Animator { get => _animator; set => _animator = value; }
 
         private void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
             nav = GetComponent<NavMeshAgent>();
+            Animator = GetComponent<IAnimationManager>();
             enemy = GetComponent<IEnemy>();
             if (player is null)
             {
                 return;
             }
-            SeekPlayer(enemy.ShootingDistance);
+            SpawnEnemy();
+        }
+
+        private void SpawnEnemy()
+        {
+            CurrentState = new SpawnState();
+            CurrentState.EnterState(this, nav, Player, enemy.ShootingDistance, Animator);
         }
 
         private void Update()
         {
             if (CurrentState is null)
                 return;
-            CurrentState.Update(this, nav, Player);
+            CurrentState.Update(this);
         }
 
         internal void Attack()
         {
             CurrentState = new AttackState();
-            CurrentState.EnterState(this, nav, Player, _range);
+            CurrentState.EnterState(this, nav, Player, enemy.ShootingDistance, Animator);
         }
 
         public void TransitionToState(BaseState state)
         {
             CurrentState = state;
-            CurrentState.EnterState(this, nav, Player, _range);
+            CurrentState.EnterState(this, nav, Player, enemy.ShootingDistance, Animator);
         }
 
         public void SeekPlayer(float range)
         {
-            _range = range;
             CurrentState = new SeekingState();
-            CurrentState.EnterState(this, nav, Player, _range);
+            CurrentState.EnterState(this, nav, Player, enemy.ShootingDistance, Animator);
         }
 
         public bool CanSeePlayer()

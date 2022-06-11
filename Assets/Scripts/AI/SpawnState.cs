@@ -14,7 +14,8 @@ namespace DaemonsGate.AI
             NavMeshAgent nav,
             GameObject player,
             float range,
-            IAnimationManager animator
+            IAnimationManager animator,
+            IEnemyAttack _enemyAttack
         )
         {
             _range = range;
@@ -29,7 +30,7 @@ namespace DaemonsGate.AI
                 return;
             if (_animator.IsAnimationFinished())
             {
-                Debug.Log("Animation finished");
+                //Debug.Log("Animation finished");
                 control.SeekPlayer(_range);
             }
         }

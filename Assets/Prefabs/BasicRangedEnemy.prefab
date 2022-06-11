@@ -849,6 +849,8 @@ GameObject:
   - component: {fileID: 1005772949947384343}
   - component: {fileID: -5043496943349513034}
   - component: {fileID: -3392601022506494757}
+  - component: {fileID: 5866666020161293777}
+  - component: {fileID: 4386267018250655781}
   m_Layer: 0
   m_Name: BasicRangedEnemy
   m_TagString: Untagged
@@ -889,7 +891,13 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+    'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+    'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+    'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Armature|Armature|mixamo.com|Layer0'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -905,7 +913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2a7f38cf8f3884aaafdd7de840c4dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingDistance: 40
+  shootingDistance: 9.26
 --- !u!114 &-5043496943349513034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -918,6 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776fe9e5994a17045bd28bb2061a014a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 
 --- !u!195 &-3392601022506494757
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -940,6 +949,30 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5866666020161293777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494395487050652149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d414d93485c6b24bb990d6565fe6573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4386267018250655781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494395487050652149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a814547422c4547bde58bbcdfb8da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2984944653981031781
 GameObject:
   m_ObjectHideFlags: 0

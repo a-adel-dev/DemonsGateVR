@@ -10,12 +10,14 @@ namespace DaemonsGate.AI
         IAnimationManager _animator;
         NavMeshAgent _nav;
         GameObject _player;
+
         public override void EnterState(
             EnemeyBehaviorControl control,
             NavMeshAgent nav,
             GameObject player,
             float range,
-            IAnimationManager animator
+            IAnimationManager animator,
+            IEnemyAttack _enemyAttack
         )
         {
             _range = range;
@@ -25,12 +27,9 @@ namespace DaemonsGate.AI
             _nav.SetDestination(_player.transform.position);
             _animator.SeekPlayer();
             control.currentState = "Seeking";
-
         }
 
-        public override void Update(
-            EnemeyBehaviorControl control
-        )
+        public override void Update(EnemeyBehaviorControl control)
         {
             if (_nav.remainingDistance <= _range && control.CanSeePlayer())
             {
@@ -42,6 +41,5 @@ namespace DaemonsGate.AI
         {
             return "Spawning";
         }
-
     }
 }

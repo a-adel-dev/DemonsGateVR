@@ -25,10 +25,17 @@ public class RangedEnemyAnimationManager : MonoBehaviour, IAnimationManager
     public void SeekPlayer()
     {
         animator.SetBool("seeking", true);
+        animator.SetBool("shooting", false);
     }
 
     public void Spawn()
     {
         
+    }
+
+    public void Attack()
+    {
+        animator.SetBool("seeking", false);
+        animator.SetBool("shooting", true);
     }
 }

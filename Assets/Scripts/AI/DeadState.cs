@@ -11,16 +11,15 @@ namespace DaemonsGate.AI
             NavMeshAgent nav,
             GameObject player,
             float range,
-            IAnimationManager animationManager
+            IAnimationManager animationManager,
+            IEnemyAttack _enemyAttack
         )
         {
             throw new System.NotImplementedException();
             //Play Death Animation
         }
 
-        public override void Update(
-            EnemeyBehaviorControl control
-        )
+        public override void Update(EnemeyBehaviorControl control)
         {
             throw new System.NotImplementedException();
             //Raise enemy death events

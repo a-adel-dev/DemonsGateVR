@@ -11,10 +11,9 @@ namespace DaemonsGate.AI
             NavMeshAgent nav,
             GameObject player,
             float range,
-            IAnimationManager animator
+            IAnimationManager animator,
+            IEnemyAttack _enemyAttack
         );
-        public abstract void Update(
-            EnemeyBehaviorControl control
-        );
+        public abstract void Update(EnemeyBehaviorControl control);
     }
 }

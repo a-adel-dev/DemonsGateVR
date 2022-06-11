@@ -1210,11 +1210,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &919132147684216077 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2494395487050652149, guid: ab41a1c2728c40a4589b5336b6cd0d60, type: 3}
-  m_PrefabInstance: {fileID: 3340745870409848056}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3340745870409848056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1222,10 +1217,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1005772949947384343, guid: ab41a1c2728c40a4589b5336b6cd0d60, type: 3}
-      propertyPath: shootingDistance
-      value: 9.26
-      objectReference: {fileID: 0}
     - target: {fileID: 2494395487050652149, guid: ab41a1c2728c40a4589b5336b6cd0d60, type: 3}
       propertyPath: m_Name
       value: BasicRangedEnemy
@@ -1276,15 +1267,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab41a1c2728c40a4589b5336b6cd0d60, type: 3}
---- !u!114 &5866666020161293777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147684216077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d414d93485c6b24bb990d6565fe6573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

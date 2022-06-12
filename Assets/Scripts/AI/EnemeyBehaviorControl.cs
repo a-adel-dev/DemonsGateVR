@@ -26,7 +26,11 @@ namespace DaemonsGate.AI
             get => _currentState;
             set => _currentState = value;
         }
-        public IAnimationManager Animator { get => _animator; set => _animator = value; }
+        public IAnimationManager Animator
+        {
+            get => _animator;
+            set => _animator = value;
+        }
 
         private void Start()
         {
@@ -56,7 +60,14 @@ namespace DaemonsGate.AI
         private void SpawnEnemy()
         {
             CurrentState = new SpawnState();
-            CurrentState.EnterState(this, nav, Player, enemy.ShootingDistance, Animator, _enemyAttack);
+            CurrentState.EnterState(
+                this,
+                nav,
+                Player,
+                enemy.ShootingDistance,
+                Animator,
+                _enemyAttack
+            );
         }
 
         private void Update()
@@ -69,19 +80,40 @@ namespace DaemonsGate.AI
         internal void Attack()
         {
             CurrentState = new AttackState();
-            CurrentState.EnterState(this, nav, Player, enemy.ShootingDistance, Animator, _enemyAttack);
+            CurrentState.EnterState(
+                this,
+                nav,
+                Player,
+                enemy.ShootingDistance,
+                Animator,
+                _enemyAttack
+            );
         }
 
         public void TransitionToState(BaseState state)
         {
             CurrentState = state;
-            CurrentState.EnterState(this, nav, Player, enemy.ShootingDistance, Animator, _enemyAttack);
+            CurrentState.EnterState(
+                this,
+                nav,
+                Player,
+                enemy.ShootingDistance,
+                Animator,
+                _enemyAttack
+            );
         }
 
         public void SeekPlayer(float range)
         {
             CurrentState = new SeekingState();
-            CurrentState.EnterState(this, nav, Player, enemy.ShootingDistance, Animator, _enemyAttack);
+            CurrentState.EnterState(
+                this,
+                nav,
+                Player,
+                enemy.ShootingDistance,
+                Animator,
+                _enemyAttack
+            );
         }
 
         public bool CanSeePlayer()

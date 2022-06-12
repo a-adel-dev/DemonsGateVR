@@ -34,5 +34,11 @@ namespace DaemonsGate.Core
         {
             return elapsedTime;
         }
+
+        public void Reset()
+        {
+            elapsedTime = 0;
+            _isOver = false;
+        }
     }
 }

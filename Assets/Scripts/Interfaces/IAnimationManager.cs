@@ -12,5 +12,7 @@ namespace DaemonsGate.Interfaces
         void Spawn();
 
         void Attack();
+        void TakeDamage();
+        void Die();
     }
 }

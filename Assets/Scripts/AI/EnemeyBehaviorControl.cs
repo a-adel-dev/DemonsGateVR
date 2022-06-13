@@ -1,3 +1,4 @@
+using DaemonsGate.Health;
 using DaemonsGate.Interfaces;
 using System;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace DaemonsGate.AI
         IEnemy enemy;
         IAnimationManager _animator;
         IEnemyAttack _enemyAttack;
+        HealthControl _health;
 
         public GameObject Player
         {
@@ -42,6 +44,7 @@ namespace DaemonsGate.AI
             _enemyAttack = GetComponent<IEnemyAttack>();
             AssertComponent<IEnemyAttack>(_enemyAttack);
             enemy = GetComponent<IEnemy>();
+            _health = GetComponent<HealthControl>();
             if (player is null)
             {
                 return;
@@ -116,6 +119,21 @@ namespace DaemonsGate.AI
             );
         }
 
+        public void SeekPlayer()
+        {
+            CurrentState = new SeekingState();
+            CurrentState.EnterState(
+                this,
+                nav,
+                Player,
+                enemy.ShootingDistance,
+                Animator,
+                _enemyAttack
+            );
+        }
+
+
+
         public bool CanSeePlayer()
         {
             bool seePlayer = true;
@@ -132,6 +150,34 @@ namespace DaemonsGate.AI
                 }
             }
             return seePlayer;
+        }
+
+        public void TakeDamage(float damage)
+        {
+            BaseState previousState = CurrentState;
+            _health.Damage(damage);
+            if (_health.IsDead())
+            {
+                CurrentState = new DeadState();
+                CurrentState.EnterState(
+                    this,
+                    nav,
+                    Player,
+                    enemy.ShootingDistance,
+                    Animator,
+                    _enemyAttack
+                );
+                //Insert Death FX here
+            }
+            else
+            {
+                CurrentState = new DamagedState();
+                CurrentState.EnterState(
+                    this,
+                    Animator,
+                    previousState
+                );
+            }
         }
     }
 }

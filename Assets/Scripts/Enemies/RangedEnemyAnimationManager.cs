@@ -38,4 +38,14 @@ public class RangedEnemyAnimationManager : MonoBehaviour, IAnimationManager
         animator.SetBool("seeking", false);
         animator.SetBool("shooting", true);
     }
+
+    public void TakeDamage()
+    {
+        animator.SetTrigger("damage");
+    }
+
+    public void Die()
+    {
+        animator.SetTrigger("death");
+    }
 }

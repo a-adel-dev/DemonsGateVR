@@ -13,6 +13,12 @@ namespace DaemonsGate.AI
 
         public override void EnterState(
             EnemeyBehaviorControl control,
+            IAnimationManager animator,
+            BaseState previousState
+        ) { }
+
+        public override void EnterState(
+            EnemeyBehaviorControl control,
             NavMeshAgent nav,
             GameObject player,
             float range,

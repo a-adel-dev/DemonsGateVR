@@ -6,6 +6,8 @@ namespace DaemonsGate.AI
 {
     public class DeadState : BaseState
     {
+        IAnimationManager _animator;
+
         public override void EnterState(
             EnemeyBehaviorControl control,
             NavMeshAgent nav,
@@ -15,14 +17,15 @@ namespace DaemonsGate.AI
             IEnemyAttack _enemyAttack
         )
         {
-            throw new System.NotImplementedException();
-            //Play Death Animation
+            _animator.Die();
         }
 
-        public override void Update(EnemeyBehaviorControl control)
-        {
-            throw new System.NotImplementedException();
-            //Raise enemy death events
-        }
+        public override void EnterState(
+            EnemeyBehaviorControl control,
+            IAnimationManager animator,
+            BaseState previousState
+        ) { }
+
+        public override void Update(EnemeyBehaviorControl control) { }
     }
 }

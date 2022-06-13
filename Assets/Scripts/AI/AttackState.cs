@@ -46,6 +46,12 @@ namespace DaemonsGate.AI
             }
         }
 
+        public override void EnterState(
+            EnemeyBehaviorControl control,
+            IAnimationManager animator,
+            BaseState previousState
+        ) { }
+
         public override void Update(EnemeyBehaviorControl control)
         {
             LookAtPlayer();
@@ -53,7 +59,8 @@ namespace DaemonsGate.AI
 
         private void LookAtPlayer()
         {
-            if (_attacking) return;
+            if (_attacking)
+                return;
             Vector3 playerDirection = (
                 _player.transform.position - _control.transform.position
             ).normalized;
@@ -70,7 +77,11 @@ namespace DaemonsGate.AI
                 _agent.destination = _control.transform.position;
                 playerDirection.y = 0;
                 Quaternion rotation = Quaternion.LookRotation(playerDirection);
-                _control.transform.rotation = Quaternion.Slerp(_control.transform.rotation, rotation, .01f);
+                _control.transform.rotation = Quaternion.Slerp(
+                    _control.transform.rotation,
+                    rotation,
+                    .01f
+                );
             }
         }
     }

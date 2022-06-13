@@ -14,6 +14,11 @@ namespace DaemonsGate.AI
             IAnimationManager animator,
             IEnemyAttack _enemyAttack
         );
+        public abstract void EnterState(
+            EnemeyBehaviorControl control,
+            IAnimationManager animator,
+            BaseState previousState
+            );
         public abstract void Update(EnemeyBehaviorControl control);
     }
 }

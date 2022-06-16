@@ -20,6 +20,7 @@ namespace DaemonsGate.AI
         HealthControl _health;
         RagDoll ragdoll;
         IFXManager fxmanager;
+        WeaponIK weaponIk;
 
         public GameObject Player
         {
@@ -36,6 +37,7 @@ namespace DaemonsGate.AI
             get => _animator;
             set => _animator = value;
         }
+        public WeaponIK WeaponIk { get => weaponIk; set => weaponIk = value; }
 
         private void Start()
         {
@@ -50,6 +52,7 @@ namespace DaemonsGate.AI
             _health = GetComponent<HealthControl>();
             ragdoll = GetComponent<RagDoll>();
             fxmanager = GetComponent<IFXManager>();
+            WeaponIk = GetComponent<WeaponIK>();
             if (player is null)
             {
                 return;

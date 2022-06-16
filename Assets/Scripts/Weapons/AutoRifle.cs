@@ -27,6 +27,11 @@ namespace DaemonsGate.Weapons
         [SerializeField]
         LayerMask playerLayer;
 
+        [SerializeField]
+        Transform rayCastObject;
+
+        public new Transform RayCastObject { get => rayCastObject; set => rayCastObject = value; }
+
         private void Update()
         {
             Shoot();

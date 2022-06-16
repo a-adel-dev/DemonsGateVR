@@ -38,11 +38,11 @@ namespace DaemonsGate.AI
             {
                 _animationManager.Attack();
                 nav.destination = control.transform.position;
-                _attacker.Attack();
+                _attacker.Attack(control.WeaponIk);
             }
             else
             {
-                LookAtPlayer();
+                LookAtPlayer(control);
             }
         }
 
@@ -54,10 +54,10 @@ namespace DaemonsGate.AI
 
         public override void Update(EnemeyBehaviorControl control)
         {
-            LookAtPlayer();
+            LookAtPlayer(control);
         }
 
-        private void LookAtPlayer()
+        private void LookAtPlayer(EnemeyBehaviorControl control)
         {
             if (_attacking)
                 return;
@@ -69,7 +69,7 @@ namespace DaemonsGate.AI
                 _agent.destination = _player.transform.position;
                 _animationManager.Attack();
                 _agent.destination = _control.transform.position;
-                _attacker.Attack();
+                _attacker.Attack(control.WeaponIk);
                 _attacking = true;
             }
             else

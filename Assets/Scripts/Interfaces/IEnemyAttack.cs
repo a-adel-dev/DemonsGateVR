@@ -6,7 +6,7 @@ namespace DaemonsGate.Interfaces
 {
     public interface IEnemyAttack
     {
-        void Attack();
+        void Attack(WeaponIK weaponIK);
         void StopAttack();
     }
 }

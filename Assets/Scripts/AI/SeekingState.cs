@@ -32,6 +32,7 @@ namespace DaemonsGate.AI
             _player = player;
             _nav.SetDestination(_player.transform.position);
             _animator.SeekPlayer();
+            control.WeaponIk.SetTargetTransform(player.GetComponent<PlayerTarget>().Target.transform);
             control.currentState = "Seeking";
         }
 

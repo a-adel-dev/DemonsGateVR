@@ -48,4 +48,17 @@ public class RangedEnemyAnimationManager : MonoBehaviour, IAnimationManager
     {
         animator.SetTrigger("death");
     }
+
+    public void EnableAnimator()
+    {
+        if (animator != null)
+        {
+            animator.enabled = true;
+        }
+    }
+
+    public void DisableAnimator()
+    {
+        animator.enabled = false;
+    }
 }

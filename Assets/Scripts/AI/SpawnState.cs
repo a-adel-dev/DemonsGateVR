@@ -28,6 +28,7 @@ namespace DaemonsGate.AI
             _animator = animator;
             _animator.Spawn();
             control.currentState = "Spawning";
+            
         }
 
         public override void Update(EnemeyBehaviorControl control)

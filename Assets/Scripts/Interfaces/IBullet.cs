@@ -6,6 +6,6 @@ namespace DaemonsGate.Interfaces
 {
     public interface IBullet
     {
-        void Damage(float damage);
+        
     }
 }

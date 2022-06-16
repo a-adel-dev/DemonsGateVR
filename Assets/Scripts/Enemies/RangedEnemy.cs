@@ -9,6 +9,8 @@ namespace DaemonsGate.Enemies
     {
         [SerializeField]
         float shootingDistance;
+        [SerializeField]
+        bool visualizeRange;
 
         public GameObject GameObject => gameObject;
 
@@ -21,7 +23,10 @@ namespace DaemonsGate.Enemies
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.DrawWireSphere(transform.position, ShootingDistance);
+            if (visualizeRange)
+            {
+                Gizmos.DrawWireSphere(transform.position, ShootingDistance);
+            }
         }
 
     }

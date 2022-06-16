@@ -14,5 +14,7 @@ namespace DaemonsGate.Interfaces
         void Attack();
         void TakeDamage();
         void Die();
+        void EnableAnimator();
+        void DisableAnimator();
     }
 }

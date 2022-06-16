@@ -1,8 +1,9 @@
 using DaemonsGate.Health;
+using DaemonsGate.Enemies;
 using DaemonsGate.Interfaces;
-using System;
 using UnityEngine;
 using UnityEngine.AI;
+using HurricaneVR.Framework.Components;
 
 namespace DaemonsGate.AI
 {
@@ -17,6 +18,8 @@ namespace DaemonsGate.AI
         IAnimationManager _animator;
         IEnemyAttack _enemyAttack;
         HealthControl _health;
+        RagDoll ragdoll;
+        IFXManager fxmanager;
 
         public GameObject Player
         {
@@ -45,6 +48,8 @@ namespace DaemonsGate.AI
             AssertComponent<IEnemyAttack>(_enemyAttack);
             enemy = GetComponent<IEnemy>();
             _health = GetComponent<HealthControl>();
+            ragdoll = GetComponent<RagDoll>();
+            fxmanager = GetComponent<IFXManager>();
             if (player is null)
             {
                 return;
@@ -71,6 +76,7 @@ namespace DaemonsGate.AI
                 Animator,
                 _enemyAttack
             );
+            ragdoll.DeactivateRagDoll();
         }
 
         private void Update()
@@ -154,30 +160,30 @@ namespace DaemonsGate.AI
 
         public void TakeDamage(float damage)
         {
-            BaseState previousState = CurrentState;
-            _health.Damage(damage);
-            if (_health.IsDead())
-            {
-                CurrentState = new DeadState();
-                CurrentState.EnterState(
+            /*           BaseState previousState = CurrentState;
+                           CurrentState = new DamagedState();
+                           CurrentState.EnterState(
+                               this,
+                               Animator,
+                               previousState
+                           );*/
+            fxmanager.FXTakeDamage();
+        }
+
+        public void Die(Vector3 direction, float force, Vector3 hitpoint, DGDamageHandler damgeHandler)
+        {
+/*            CurrentState = new DeadState();
+            CurrentState.EnterState(
                     this,
                     nav,
                     Player,
                     enemy.ShootingDistance,
                     Animator,
                     _enemyAttack
-                );
-                //Insert Death FX here
-            }
-            else
-            {
-                CurrentState = new DamagedState();
-                CurrentState.EnterState(
-                    this,
-                    Animator,
-                    previousState
-                );
-            }
+                );*/
+            ragdoll.ActivateRagDoll();
+            //Insert Death FX here
+            damgeHandler.GetComponent<Rigidbody>().AddForceAtPosition(direction.normalized * force, hitpoint, ForceMode.VelocityChange);
         }
     }
 }

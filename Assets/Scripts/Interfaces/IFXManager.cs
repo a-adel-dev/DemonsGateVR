@@ -3,6 +3,7 @@
     public interface IFXManager
     {
         void PlayFX(IFX fx);
+        void FXTakeDamage();
     }
 
 }

@@ -15,7 +15,7 @@ namespace Health
         protected DaemonsGate.Health.Health health;
         [SerializeField]
         float currentHitPoints;
-        protected UIHealthBar healthbar;
+        [SerializeField] protected UIHealthBar healthbar;
         private bool _isDead;
         private PostProcessProfile postProcessingProfile;
 
@@ -34,7 +34,7 @@ namespace Health
             }
             health = new DaemonsGate.Health.Health(maxHitPoints);
             currentHitPoints = health.Hitpoints;
-            healthbar = GetComponentInChildren<UIHealthBar>();
+
             postProcessingProfile = FindObjectOfType<PostProcessVolume>().profile;
         }
 

@@ -97,6 +97,7 @@ namespace DaemonsGate.Waves
                 case GameState.GameOver:
                     _waveInfoUI.ShowTimer(false);
                     _waveInfoUI.ShowGameOver(true);
+                    _spawning = false;
                     debugText = "Over";
                     break;
                 case GameState.Win:

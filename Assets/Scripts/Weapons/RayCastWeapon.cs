@@ -96,7 +96,7 @@ namespace DaemonsGate.Weapons
                 
                 if (rayHit.collider.CompareTag("Player"))
                 {
-                    rayHit.collider.GetComponent<PlayerHealth>().TakeDamage(damage);
+                    rayHit.collider.GetComponent<PlayerHealth>().TakeDamage(Random.Range(damage-10, damage+10));
                 }
             }
             

@@ -12,6 +12,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utilities/DestroySelf.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utilities/Events/PlayerDeadEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utilities/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -71,7 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1655414843874</updated>
       <workItem from="1655414858928" duration="22912000" />
-      <workItem from="1655466701099" duration="18283000" />
+      <workItem from="1655466701099" duration="22325000" />
     </task>
     <servers />
   </component>

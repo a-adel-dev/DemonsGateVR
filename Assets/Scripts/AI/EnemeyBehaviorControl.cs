@@ -53,6 +53,10 @@ namespace DaemonsGate.AI
             ragdoll = GetComponent<RagDoll>();
             fxmanager = GetComponent<IFXManager>();
             WeaponIk = GetComponent<WeaponIK>();
+            
+            EventManager.AddListener(EventName.PlayerDeadEvent,  GameOver);
+            
+            
             if (player is null)
             {
                 return;
@@ -194,6 +198,12 @@ namespace DaemonsGate.AI
             BaseState previousState = CurrentState;
             CurrentState = new ReloadState();
             CurrentState.EnterState(this,Animator, previousState);
+        }
+
+        void GameOver()
+        {
+            CurrentState = new IdleState();
+            CurrentState.EnterState(this, nav, Player, enemy.ShootingDistance, Animator, _enemyAttack);
         }
     }
 }

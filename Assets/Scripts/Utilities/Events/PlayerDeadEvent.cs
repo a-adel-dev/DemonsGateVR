@@ -1,4 +1,5 @@
-﻿using UnityEngine.Events;
+﻿
+using UnityEngine.Events;
 
 namespace Utilities.Events
 {

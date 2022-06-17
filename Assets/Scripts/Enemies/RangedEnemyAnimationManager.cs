@@ -68,4 +68,10 @@ public class RangedEnemyAnimationManager : MonoBehaviour, IAnimationManager
         animator.SetTrigger("reloading");
         animator.SetBool("idle", false);
     }
+
+    public void Idle()
+    {
+        animator.SetBool("seeking", false);
+        animator.SetBool("idle", true);
+    }
 }

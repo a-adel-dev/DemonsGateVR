@@ -40,7 +40,7 @@ namespace DaemonsGate.Waves
         private void Start()
         {
             _gameState = GameState.Initializing;
-            EventManager.AddListener(GameOver);
+            EventManager.AddListener(EventName.PlayerDeadEvent, GameOver);
         }
 
         private void Update()

@@ -3,6 +3,9 @@ using DaemonsGate.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using Utilities.Events;
+using UnityEngine.Rendering.PostProcessing;
+
+
 
 namespace Health
 {
@@ -13,14 +16,18 @@ namespace Health
         [SerializeField]
         float currentHitPoints;
         protected UIHealthBar healthbar;
-        private PlayerDeadEvent playerDead = new PlayerDeadEvent();
         private bool _isDead;
+        private PostProcessProfile postProcessingProfile;
 
 
         // Start is called before the first frame update
         void Start()
         {
-            EventManager.AddInvoker(this);
+            
+            unityEvents.Add(EventName.PlayerDeadEvent, new PlayerDeadEvent());
+            EventManager.AddInvoker( EventName.PlayerDeadEvent, this);
+            
+            
             if (maxHitPoints == 0)
             {
                 Debug.LogWarning($"You have not set a health value for this gameObject: {gameObject.name}");
@@ -28,6 +35,7 @@ namespace Health
             health = new DaemonsGate.Health.Health(maxHitPoints);
             currentHitPoints = health.Hitpoints;
             healthbar = GetComponentInChildren<UIHealthBar>();
+            postProcessingProfile = FindObjectOfType<PostProcessVolume>().profile;
         }
 
         public override void TakeDamage(float value)
@@ -36,6 +44,12 @@ namespace Health
             currentHitPoints = health.Hitpoints;
             healthbar.SetHealthBarPercentage(currentHitPoints / maxHitPoints);
             _isDead = IsDead();
+            Vignette vignette;
+            if (postProcessingProfile.TryGetSettings(out vignette))
+            {
+                float percent = 1.0f - currentHitPoints / health.MaxHitPoints;
+                vignette.intensity.value = percent * 0.5f;
+            }
         }
 
         public override void Heal(float value)
@@ -56,14 +70,10 @@ namespace Health
             if (health.IsDead())
             {
                 healthbar.gameObject.SetActive(false);
-                playerDead.Invoke();
+                unityEvents[EventName.PlayerDeadEvent].Invoke();
             }
             return health.IsDead();
         }
-
-        public void AddPLayerDeadEventListener(UnityAction listener)
-        {
-            playerDead.AddListener(listener);
-        }
+        
     }
 }

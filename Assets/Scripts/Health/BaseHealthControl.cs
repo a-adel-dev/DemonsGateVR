@@ -2,7 +2,7 @@
 
 namespace Health
 {
-    public abstract class BaseHealthControl : MonoBehaviour
+    public abstract class BaseHealthControl : EventInvoker
     {
         public abstract void TakeDamage(float value);
 

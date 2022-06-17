@@ -18,5 +18,7 @@ namespace DaemonsGate.Interfaces
         void DisableAnimator();
 
         void Reload();
+
+        void Idle();
     }
 }

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 210946417712830609}
   - component: {fileID: 210946417712830608}
   - component: {fileID: -5407125033254445365}
+  - component: {fileID: -3856027155789325970}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -100,9 +101,7 @@ MonoBehaviour:
   _spread: 0.2
   _range: 6000
   _reloadTime: 3
-  _timeBetweenShots: 0.6
   _magazineSize: 6
-  _bulletsPerTap: 1
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
@@ -110,6 +109,19 @@ MonoBehaviour:
   muzzleFlashPrefab: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
     type: 3}
   bulletholeGraphic: {fileID: 0}
+--- !u!114 &-3856027155789325970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210946417712830606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dabf4f5c7613ba84a915d91f499e6a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunSFX: {fileID: 11400000, guid: 053235c7b6a4ed44c97da9e19b031b22, type: 2}
 --- !u!1 &210946417948611164
 GameObject:
   m_ObjectHideFlags: 0

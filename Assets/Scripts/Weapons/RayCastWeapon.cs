@@ -15,6 +15,7 @@ namespace DaemonsGate.Weapons
         [SerializeField] private float _range;
         [SerializeField] private float _reloadTime;
         [SerializeField] private int _magazineSize;
+        private AudioManager SFX;
 
         private int _bulletsLeft;
         public bool Shooting { get; }
@@ -51,7 +52,11 @@ namespace DaemonsGate.Weapons
         Transform _rayCastObject;
 
         public GameObject muzzleFlashPrefab, bulletholeGraphic;
-        
+
+        private void Start()
+        {
+            SFX = GetComponent<AudioManager>();
+        }
 
         public override Transform GetRayCastObject()
         {
@@ -82,11 +87,12 @@ namespace DaemonsGate.Weapons
             //Calculate Direction with Spread
             Vector3 direction = _rayCastObject.forward + new Vector3(xSpread, ySpread, 0);
             Debug.DrawRay(_rayCastObject.position, direction, Color.magenta, 1f);
+            SFX?.PlayPistolShotFX();
             //RayCast
             if (Physics.Raycast(_rayCastObject.position, direction * 10f, out rayHit, _range, whatIsPlayer))
             {
                 //Debug.Log(rayHit.collider.name);
-
+                
                 if (rayHit.collider.CompareTag("Player"))
                 {
                     rayHit.collider.GetComponent<HealthControl>().TakeDamage(damage);

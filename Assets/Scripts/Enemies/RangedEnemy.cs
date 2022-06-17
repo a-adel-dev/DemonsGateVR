@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using DaemonsGate.AI;
-using UnityEngine.AI;
 using DaemonsGate.Interfaces;
 
 namespace DaemonsGate.Enemies
 {
-    public class RangedEnemy : MonoBehaviour , IEnemy
+    public class RangedEnemy : BaseEnemy, IEnemy
     {
         [SerializeField]
         float shootingDistance;

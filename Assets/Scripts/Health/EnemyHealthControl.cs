@@ -1,22 +1,23 @@
 using DaemonsGate.UI;
 using System.Collections;
 using System.Collections.Generic;
+using Health;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace DaemonsGate.Health
 {
-    public class HealthControl : MonoBehaviour
+    public class EnemyHealthControl : BaseHealthControl
     {
         [SerializeField] float maxHitPoints;
-        Health health;
+        protected Health health;
         [SerializeField]
         float currentHitPoints;
-        UIHealthBar healthbar;
+        protected UIHealthBar healthbar;
 
 
         // Start is called before the first frame update
-        void Start()
+        protected void Start()
         {
             if (maxHitPoints == 0)
             {
@@ -27,27 +28,27 @@ namespace DaemonsGate.Health
             healthbar = GetComponentInChildren<UIHealthBar>();
         }
 
-        public void TakeDamage(float value)
+        public override void TakeDamage(float value)
         {
             health?.Damage(value);
             currentHitPoints = health.Hitpoints;
             healthbar.SetHealthBarPercentage(currentHitPoints / maxHitPoints);
         }
 
-        public void Heal(float value)
+        public override void Heal(float value)
         {
             health?.Heal(value);
             currentHitPoints = health.Hitpoints;
             healthbar.SetHealthBarPercentage(currentHitPoints / maxHitPoints);
         }
 
-        public void IncreaseMaxHealth(float value, bool increaseCurrentHealth)
+        public override void IncreaseMaxHealth(float value, bool increaseCurrentHealth)
         {
             health?.IncreaseMaxHitPoints(value, increaseCurrentHealth);
             currentHitPoints = health.Hitpoints;
         }
 
-        public bool IsDead()
+        public override bool IsDead()
         {
             if (health.IsDead())
             {

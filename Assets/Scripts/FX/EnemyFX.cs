@@ -7,6 +7,8 @@ namespace DaemonsGate.FX
     {
         [SerializeField]
         HitFX takeDamage;
+
+        [SerializeField] private GameObject spawnFX;
         public void FXTakeDamage()
         {
             takeDamage.PlayEffect();
@@ -17,6 +19,15 @@ namespace DaemonsGate.FX
             fx.PlayEffect();
         }
 
+        public void FXSpawn(Vector3 position)
+        {
+            if (spawnFX == null)
+            {
+                return;
+            }
+
+            Instantiate(spawnFX, position, Quaternion.identity);
+        }
 
     }
 }

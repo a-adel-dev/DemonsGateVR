@@ -1,5 +1,7 @@
+using System;
 using DaemonsGate.Interfaces;
 using DaemonsGate.Core;
+using DaemonsGate.UI;
 using TMPro;
 using UnityEngine;
 
@@ -7,100 +9,132 @@ namespace DaemonsGate.Waves
 {
     public class WaveGenerator : MonoBehaviour
     {
-        [SerializeField]
-        Wave[] waves;
+        [SerializeField] Wave[] waves;
 
-        [SerializeField]
-        bool debugMode;
+        [SerializeField] string debugText;
 
-        
+        [SerializeField] private float idleTime = 10f;
+
+
         IEnemySpawner _spawner;
 
         float _waveTime;
         Timer _wavetimer;
+        private Timer _idleTimer;
         int _currentWave;
         bool _spawning = true;
-        private bool _waveInProgress = false;
+        private WaveInfoUI _waveInfoUI;
+        private GameState _gameState;
+        private bool spawned;
+        private bool _playerAlive = true;
 
-        private Timer _uiUpdate;
-        private TextMeshPro waveTimer;
+
 
         private void Awake()
         {
-            _spawner = (IEnemySpawner)GetComponent<EnemySpawner>();
-            _uiUpdate = new Timer(1.0f);
+            _spawner = (IEnemySpawner) GetComponent<EnemySpawner>();
+            _waveInfoUI = GetComponent<WaveInfoUI>();
+            _idleTimer = new Timer(idleTime);
+        }
+
+        private void Start()
+        {
+            _gameState = GameState.Initializing;
+            EventManager.AddListener(GameOver);
         }
 
         private void Update()
         {
-            if (_uiUpdate.isTimerUp() && _waveInProgress && waveTimer != null)
+            if (_playerAlive == false)
             {
-                waveTimer.text = _wavetimer.ElapsedTime().ToString();
+                _gameState = GameState.GameOver;
             }
-            if (_wavetimer is null)
+            switch (_gameState)
             {
-                return;
-            }
-            if (_wavetimer != null)
-            {
-                _wavetimer.PassTime(Time.deltaTime);
-            }
-            if (_wavetimer.isTimerUp()) //TODO: Assert that enemies are dead and that player is alive
-            {
-                AdvanceWave();
-            }
-        }
+                case GameState.Initializing:
+                    debugText = "init";
+                    _idleTimer.PassTime(Time.deltaTime);
+                    if (_idleTimer.isTimerUp())
+                    {
+                        _spawning = true;
+                        _gameState = GameState.WaveInProgress;
+                        _idleTimer.Reset();
+                    }
 
-        public void BeginWaves()
-        {
-            if (_spawner is null)
-            {
-                Debug.LogError($"No EnemySpawner component on game object: {gameObject.name}");
-            }
-            if (waves.Length > 0)
-            {
-                AdvanceWave();
+                    break;
+                case GameState.WaveInProgress:
+                    debugText = "inProgress";
+                    AdvanceWave();
+                    _waveInfoUI.ShowTimer(true);
+                    _waveInfoUI.UpdateWaveTimer(_waveTime - _wavetimer.ElapsedTime(), _currentWave);
+                    _wavetimer.PassTime(Time.deltaTime);
+                    if (_wavetimer.isTimerUp())
+                    {
+                        if (_currentWave == waves.Length)
+                        {
+                            _gameState = GameState.Win;
+                            _spawning = false;
+                        }
+                        else
+                        {
+                            _gameState = GameState.WaveOver;
+                        }
+                    }
+                    break;
+                case GameState.WaveOver:
+                    debugText = "waveOver";
+                    _idleTimer.PassTime(Time.deltaTime);
+                    _gameState = GameState.WaveOver;
+                    _waveInfoUI.ShowTimer(false);
+                    if (_idleTimer.isTimerUp())
+                    {
+                        _spawning = true;
+                        _gameState = GameState.WaveInProgress;
+                        _idleTimer.Reset();
+                    }
+
+                    break;
+                case GameState.GameOver:
+                    _waveInfoUI.ShowTimer(false);
+                    _waveInfoUI.ShowGameOver(true);
+                    debugText = "Over";
+                    break;
+                case GameState.Win:
+                    debugText = "win";
+                    _waveInfoUI.ShowTimer(false);
+                    _waveInfoUI.ShowWinText(true);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
         private void AdvanceWave()
         {
-            _waveInProgress = true;
             if (_spawning is false)
                 return;
-            if (_currentWave == waves.Length)
-            {
-                _waveInProgress = false;
-                //raise Win event
-                if (debugMode)
-                {
-                    Debug.Log($"Waves are complete!");
-                }
-                _spawning = false;
-                return;
-            }
+            
+
             _waveTime = waves[_currentWave].WaveDuration;
             _wavetimer = new Timer(_waveTime);
-            SpawnWave(waves[_currentWave]);
-            if (debugMode)
-            {
-                Debug.Log($"Spawning wave: {waves[_currentWave].WaveId}");
-            }
+            _spawner.SpawnWave(waves[_currentWave]);
             _currentWave++;
+            _spawning = false;
         }
-
-        void SpawnWave(Wave wave)
+        
+        public void GameOver()
         {
-            if (waves.Length <= 0)
-            {
-                Debug.LogError(
-                    $"Wave spawn Faild. There are no Waves in the list. Make sure "
-                        + $"to add at least 1 wave."
-                );
-                return;
-            }
-
-            _spawner.SpawnWave(wave);
+            _playerAlive = false;
         }
+    }
+
+
+    enum GameState
+    {
+        Initializing,
+        WaveInProgress,
+        WaveOver,
+        GameOver,
+        Win
     }
 }

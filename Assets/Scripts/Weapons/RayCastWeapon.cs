@@ -1,5 +1,6 @@
 using System;
 using DaemonsGate.Health;
+using Health;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -95,7 +96,7 @@ namespace DaemonsGate.Weapons
                 
                 if (rayHit.collider.CompareTag("Player"))
                 {
-                    rayHit.collider.GetComponent<HealthControl>().TakeDamage(damage);
+                    rayHit.collider.GetComponent<PlayerHealth>().TakeDamage(damage);
                 }
             }
             

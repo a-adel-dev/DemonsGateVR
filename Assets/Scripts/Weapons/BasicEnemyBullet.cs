@@ -11,7 +11,7 @@ public class BasicEnemyBullet : MonoBehaviour, IBullet
 
     public void Damage(float damage)
     {
-        GetComponent<HealthControl>().TakeDamage(damage);
+        GetComponent<EnemyHealthControl>().TakeDamage(damage);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +19,7 @@ public class BasicEnemyBullet : MonoBehaviour, IBullet
         GameObject target = other.gameObject.transform.parent.gameObject;
         if (target.CompareTag("Player"))
         {
-            target.GetComponent<HealthControl>().TakeDamage(damage);
+            target.GetComponent<EnemyHealthControl>().TakeDamage(damage);
         }
         Destroy(gameObject);
     }

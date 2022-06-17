@@ -6,11 +6,11 @@ namespace DaemonsGate.Health
 {
     public class HitBox : MonoBehaviour
     {
-        HealthControl healthControl;
+        EnemyHealthControl _enemyHealthControl;
 
         public void TakeDamage(float value)
         {
-            healthControl.TakeDamage(value);
+            _enemyHealthControl.TakeDamage(value);
         }
     }
 }

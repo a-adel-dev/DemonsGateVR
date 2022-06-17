@@ -8,7 +8,7 @@ namespace HurricaneVR.Framework.Components
     public class DGDamageHandler : HVRDamageHandlerBase
     {
         //public float Life = 100f;
-        HealthControl healthControl;
+        EnemyHealthControl _enemyHealthControl;
         EnemeyBehaviorControl behaviorControl;
 
         public bool Damageable = true;
@@ -18,7 +18,7 @@ namespace HurricaneVR.Framework.Components
         void Start()
         {
             Rigidbody = GetComponent<Rigidbody>();
-            healthControl = transform.root.GetComponent<HealthControl>();
+            _enemyHealthControl = transform.root.GetComponent<EnemyHealthControl>();
             behaviorControl = transform.root.GetComponent<EnemeyBehaviorControl>();
         }
 
@@ -26,8 +26,8 @@ namespace HurricaneVR.Framework.Components
         {
             if (Damageable)
             {
-                healthControl.TakeDamage(damage);
-                if (healthControl.IsDead() == false)
+                _enemyHealthControl.TakeDamage(damage);
+                if (_enemyHealthControl.IsDead() == false)
                 {
                     behaviorControl.TakeDamage(damage);
                 }
@@ -39,7 +39,7 @@ namespace HurricaneVR.Framework.Components
         {
             base.HandleDamageProvider(damageProvider, hitPoint, direction);
 
-            if (Rigidbody && healthControl.IsDead())
+            if (Rigidbody && _enemyHealthControl.IsDead())
             {
                 behaviorControl.Die(direction.normalized, damageProvider.Force, hitPoint, this);
             }

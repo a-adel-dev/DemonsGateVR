@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a5dd0fd878417bb531145c69fdc618, type: 3}
   m_Name: sfx_pistol_shot
   m_EditorClassIdentifier: 
-  clips: []
+  clips:
+  - {fileID: 8300000, guid: cc138fdcd3bad3145a02f47304a22a2f, type: 3}
+  - {fileID: 8300000, guid: b041196743788e24888e8de2ac850e5a, type: 3}
+  - {fileID: 8300000, guid: 147cff45747df2b47867468cee2e4974, type: 3}
   volume: {x: 0.5, y: 0.5}
   pitch: {x: 1, y: 1}
+  playIndex: 0
+  playOrder: 0

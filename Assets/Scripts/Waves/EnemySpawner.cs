@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using DaemonsGate.FX;
 using UnityEngine;
 using DaemonsGate.Interfaces;
+using UnityEngine.UIElements;
 
 namespace DaemonsGate.Waves
 {
     public class EnemySpawner : MonoBehaviour, IEnemySpawner
     {
         public GameObject GameObject => gameObject;
-        [SerializeField] private GameObject spawnFXPrefab;
-        
+        public float EnemySpawnTime = 2f;
+
         public void SpawnWave(IWave wave)
         {
             if (wave.SpawnPositions.Length <= 0)
@@ -21,23 +23,31 @@ namespace DaemonsGate.Waves
                 return;
             }
 
-            SpawnEnemy(wave);
+            SpawnEnemies(wave);
         }
 
-        public void SpawnEnemy(IWave wave)
+        public void SpawnEnemies(IWave wave)
         {
-            int counter = 0;
+
+            int spawnPositionCounter = 0;
 
             foreach (IEnemy enemy in wave.Enemies)
             {
-                Instantiate(spawnFXPrefab, wave.SpawnPositions[counter], Quaternion.identity);
-                Instantiate(enemy.GameObject, wave.SpawnPositions[counter], Quaternion.identity);
-                counter++;
-                if (counter == wave.SpawnPositions.Length)
+                enemy.GameObject.GetComponent<EnemyFX>().FXSpawn(wave.SpawnPositions[spawnPositionCounter]);
+
+                StartCoroutine(SpawnEnemy(enemy.GameObject, wave, spawnPositionCounter));
+                spawnPositionCounter++;
+                if (spawnPositionCounter == wave.SpawnPositions.Length)
                 {
-                    counter = 0;
+                    spawnPositionCounter = 0;
                 }
             }
+        }
+
+        IEnumerator SpawnEnemy(GameObject enemy, IWave wave, int index)
+        {
+            yield return new WaitForSeconds(Random.Range(0, EnemySpawnTime));
+            Instantiate(enemy, wave.SpawnPositions[index], Quaternion.identity);
         }
     }
 }

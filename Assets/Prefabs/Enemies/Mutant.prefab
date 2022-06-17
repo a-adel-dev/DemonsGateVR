@@ -2096,7 +2096,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5322602627918510500}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28b93fa7357815a4bb39e4778a2c878a, type: 3}
   m_Name: 
@@ -2144,6 +2144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   takeDamage: {fileID: 1723879381966296398}
+  spawnFX: {fileID: 5885376816190815477, guid: 5a9e5385eb5ddc54dbeca3b3253949a2, type: 3}
 --- !u!114 &2136379700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4193,6 +4194,11 @@ PrefabInstance:
         type: 3}
       propertyPath: whatIsPlayer.m_Bits
       value: 2304
+      objectReference: {fileID: 0}
+    - target: {fileID: -5407125033254445365, guid: 121e449fb203ab541972ee90a28c2f34,
+        type: 3}
+      propertyPath: _timeBetweenShooting
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 210946417712830606, guid: 121e449fb203ab541972ee90a28c2f34,
         type: 3}

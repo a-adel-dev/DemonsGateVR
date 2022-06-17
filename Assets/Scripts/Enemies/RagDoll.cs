@@ -10,7 +10,7 @@ namespace DaemonsGate.Enemies
         Rigidbody[] rigidBodies;
         [SerializeField] float mass;
         IAnimationManager animationManager;
-        void Start()
+        void Awake()
         {
             rigidBodies = GetComponentsInChildren<Rigidbody>();
             animationManager = GetComponent<IAnimationManager>();
@@ -18,7 +18,6 @@ namespace DaemonsGate.Enemies
             {
                 rigidBody.mass = mass;
             }
-            DeactivateRagDoll(); //TODO: remove in production
         }
 
         public void DeactivateRagDoll()

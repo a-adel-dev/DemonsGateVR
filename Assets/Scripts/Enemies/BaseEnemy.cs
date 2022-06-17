@@ -3,9 +3,7 @@ using UnityEngine;
 
 
 
-public class BaseEnemy : MonoBehaviour, IEnemy
+public abstract class BaseEnemy : MonoBehaviour
 {
-    public GameObject GameObject => (gameObject);
 
-    public float ShootingDistance { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 }

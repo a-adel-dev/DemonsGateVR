@@ -17,7 +17,7 @@ namespace DaemonsGate.AI
         IEnemy enemy;
         IAnimationManager _animator;
         IEnemyAttack _enemyAttack;
-        HealthControl _health;
+        EnemyHealthControl _enemyHealth;
         RagDoll ragdoll;
         IFXManager fxmanager;
         WeaponIK weaponIk;
@@ -49,7 +49,7 @@ namespace DaemonsGate.AI
             _enemyAttack = GetComponent<IEnemyAttack>();
             AssertComponent<IEnemyAttack>(_enemyAttack);
             enemy = GetComponent<IEnemy>();
-            _health = GetComponent<HealthControl>();
+            _enemyHealth = GetComponent<EnemyHealthControl>();
             ragdoll = GetComponent<RagDoll>();
             fxmanager = GetComponent<IFXManager>();
             WeaponIk = GetComponent<WeaponIK>();

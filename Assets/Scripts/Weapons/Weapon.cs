@@ -9,8 +9,7 @@ namespace DaemonsGate.Weapons
 {
     public abstract class Weapon : MonoBehaviour
     {
-        public Transform RayCastObject { get; internal set; }
-
-        public abstract void WeaponAttack();
+        public abstract Transform GetRayCastObject();
+        
     }
 }

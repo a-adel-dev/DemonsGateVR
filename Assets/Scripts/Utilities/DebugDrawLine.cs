@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class DebugDrawLine : MonoBehaviour
 {
+    [SerializeField] private bool enable = true;
     private void OnDrawGizmos()
     {
-        Debug.DrawLine(transform.position, transform.position + transform.forward * 50);
+        if (enable)
+        {
+            Debug.DrawLine(transform.position, transform.position + transform.forward * 50);
+        }
     }
 }

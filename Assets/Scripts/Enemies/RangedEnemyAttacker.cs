@@ -14,8 +14,8 @@ namespace DaemonsGate.Enemies
         public void Attack(WeaponIK weaponIK)
         {
             if (weapon == null) { Debug.Log($"No weapon is found on game object : {gameObject.name}");}
-            weaponIK.SetAimTransform(weapon.RayCastObject);
-            weapon.WeaponAttack();
+            weaponIK.SetAimTransform(weapon.GetRayCastObject());
+            //weapon.Attack();
         }
 
         public void StopAttack()
@@ -23,5 +23,19 @@ namespace DaemonsGate.Enemies
             throw new System.NotImplementedException();
         }
 
+        public float GetTimeBetweenShooting()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool CanAttack()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool Reloading()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

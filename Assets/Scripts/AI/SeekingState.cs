@@ -40,6 +40,7 @@ namespace DaemonsGate.AI
         {
             if (_nav.remainingDistance <= _range && control.CanSeePlayer())
             {
+                _nav.SetDestination(control.transform.position);
                 control.Attack();
             }
         }

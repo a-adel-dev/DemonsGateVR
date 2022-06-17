@@ -188,5 +188,12 @@ namespace DaemonsGate.AI
             //Insert Death FX here
             damgeHandler.GetComponent<Rigidbody>().AddForceAtPosition(direction.normalized * force, hitpoint, ForceMode.VelocityChange);
         }
+
+        public void Reload()
+        {
+            BaseState previousState = CurrentState;
+            CurrentState = new ReloadState();
+            CurrentState.EnterState(this,Animator, previousState);
+        }
     }
 }

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using DaemonsGate.Interfaces;
 
@@ -35,8 +34,10 @@ public class RangedEnemyAnimationManager : MonoBehaviour, IAnimationManager
 
     public void Attack()
     {
+        animator.SetBool("idle", false);
         animator.SetBool("seeking", false);
-        animator.SetBool("shooting", true);
+        animator.SetTrigger("shooting");
+        animator.SetBool("idle", true);
     }
 
     public void TakeDamage()
@@ -60,5 +61,11 @@ public class RangedEnemyAnimationManager : MonoBehaviour, IAnimationManager
     public void DisableAnimator()
     {
         animator.enabled = false;
+    }
+
+    public void Reload()
+    {
+        animator.SetTrigger("reloading");
+        animator.SetBool("idle", false);
     }
 }

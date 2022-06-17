@@ -8,7 +8,8 @@ namespace DaemonsGate.Waves
     public class EnemySpawner : MonoBehaviour, IEnemySpawner
     {
         public GameObject GameObject => gameObject;
-
+        [SerializeField] private GameObject spawnFXPrefab;
+        
         public void SpawnWave(IWave wave)
         {
             if (wave.SpawnPositions.Length <= 0)
@@ -29,6 +30,7 @@ namespace DaemonsGate.Waves
 
             foreach (IEnemy enemy in wave.Enemies)
             {
+                Instantiate(spawnFXPrefab, wave.SpawnPositions[counter], Quaternion.identity);
                 Instantiate(enemy.GameObject, wave.SpawnPositions[counter], Quaternion.identity);
                 counter++;
                 if (counter == wave.SpawnPositions.Length)

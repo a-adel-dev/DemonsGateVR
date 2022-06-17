@@ -37,11 +37,12 @@ namespace DaemonsGate.Weapons
             Shoot();
         }
 
-        public override void WeaponAttack()
+        public override Transform GetRayCastObject()
         {
-            _shooting = true;
-
+            throw new System.NotImplementedException();
         }
+
+
 
         void Shoot()
         {

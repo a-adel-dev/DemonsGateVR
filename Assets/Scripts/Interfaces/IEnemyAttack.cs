@@ -8,5 +8,11 @@ namespace DaemonsGate.Interfaces
     {
         void Attack(WeaponIK weaponIK);
         void StopAttack();
+
+        public float GetTimeBetweenShooting();
+
+        public bool CanAttack();
+
+        public bool Reloading();
     }
 }

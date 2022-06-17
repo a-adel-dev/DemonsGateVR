@@ -1,5 +1,6 @@
 using DaemonsGate.Interfaces;
 using DaemonsGate.Core;
+using TMPro;
 using UnityEngine;
 
 namespace DaemonsGate.Waves
@@ -12,20 +13,30 @@ namespace DaemonsGate.Waves
         [SerializeField]
         bool debugMode;
 
+        
         IEnemySpawner _spawner;
 
         float _waveTime;
         Timer _wavetimer;
         int _currentWave;
         bool _spawning = true;
+        private bool _waveInProgress = false;
+
+        private Timer _uiUpdate;
+        private TextMeshPro waveTimer;
 
         private void Awake()
         {
             _spawner = (IEnemySpawner)GetComponent<EnemySpawner>();
+            _uiUpdate = new Timer(1.0f);
         }
 
         private void Update()
         {
+            if (_uiUpdate.isTimerUp() && _waveInProgress && waveTimer != null)
+            {
+                waveTimer.text = _wavetimer.ElapsedTime().ToString();
+            }
             if (_wavetimer is null)
             {
                 return;
@@ -54,10 +65,12 @@ namespace DaemonsGate.Waves
 
         private void AdvanceWave()
         {
+            _waveInProgress = true;
             if (_spawning is false)
                 return;
             if (_currentWave == waves.Length)
             {
+                _waveInProgress = false;
                 //raise Win event
                 if (debugMode)
                 {

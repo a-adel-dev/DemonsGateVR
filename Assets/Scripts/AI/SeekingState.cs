@@ -38,7 +38,7 @@ namespace DaemonsGate.AI
 
         public override void Update(EnemeyBehaviorControl control)
         {
-            if (_nav.remainingDistance <= _range && control.CanSeePlayer())
+            if (Vector3.Distance(control.transform.position, _player.transform.position) <= _range && control.CanSeePlayer())
             {
                 _nav.SetDestination(control.transform.position);
                 control.Attack();

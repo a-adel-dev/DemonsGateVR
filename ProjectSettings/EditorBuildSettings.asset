@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Merge.unity
+    guid: aadf645b7bdfe59478877d7cfbcc3230
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: ba4372c0b8655844eb947e3ad0fd19fd,
       type: 2}

@@ -17,7 +17,7 @@ namespace DaemonsGate.AI
             IEnemyAttack _enemyAttack
         )
         {
-            //_animator.Die();
+            
         }
 
         public override void EnterState(

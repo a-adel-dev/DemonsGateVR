@@ -179,7 +179,7 @@ namespace DaemonsGate.AI
 
         public void Die(Vector3 direction, float force, Vector3 hitpoint, DGDamageHandler damgeHandler)
         {
-/*            CurrentState = new DeadState();
+          CurrentState = new DeadState();
             CurrentState.EnterState(
                     this,
                     nav,
@@ -187,10 +187,11 @@ namespace DaemonsGate.AI
                     enemy.ShootingDistance,
                     Animator,
                     _enemyAttack
-                );*/
+                );
             ragdoll.ActivateRagDoll();
             //Insert Death FX here
             damgeHandler.GetComponent<Rigidbody>().AddForceAtPosition(direction.normalized * force, hitpoint, ForceMode.VelocityChange);
+            Destroy(gameObject, 5f);
         }
 
         public void Reload()

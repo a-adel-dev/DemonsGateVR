@@ -134,10 +134,8 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0
-  preloadedAssets:
-  - {fileID: -8141582950552940825, guid: 22d0fffb49308c64da7d4e00dfaffa85, type: 2}
-  - {fileID: 11400000, guid: ba4372c0b8655844eb947e3ad0fd19fd, type: 2}
+  bundleVersion: 0.1
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -157,7 +155,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.oculus.UnitySample
+    Android: com.ARTillery.AlienDefense
     Standalone: unity.DefaultCompany.FPS2
     Tizen: com.Company.ProductName
     iPhone: com.Company.ProductName
@@ -251,7 +249,7 @@ PlayerSettings:
   useCustomBaseGradleTemplate: 0
   useCustomGradlePropertiesTemplate: 0
   useCustomProguardFile: 0
-  AndroidTargetArchitectures: 5
+  AndroidTargetArchitectures: 2
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
@@ -479,6 +477,7 @@ PlayerSettings:
   openGLRequireES32: 0
   m_TemplateCustomTags: {}
   mobileMTRendering:
+    Android: 1
     iPhone: 1
     tvOS: 1
   m_BuildTargetGroupLightmapEncodingQuality:
@@ -759,7 +758,7 @@ PlayerSettings:
     iPhone: 1
     tvOS: 1
   scriptingBackend:
-    Android: 0
+    Android: 1
     Standalone: 0
     WP8: 2
     WebGL: 1
